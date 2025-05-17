@@ -37,7 +37,7 @@ public class TaskAdaptor extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView==null){
-            convertView= LayoutInflater.from(context).inflate(R.layout.todoadapter,parent,false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.todoadapter,parent,false);
             TextView tvTaskName = (TextView)convertView.findViewById(R.id.tvTaskName);
             TextView tvTaskDesc = (TextView)convertView.findViewById(R.id.tvTaskDesc);
             TextView tvTaskStatus = (TextView)convertView.findViewById(R.id.tvTaskStatus);
