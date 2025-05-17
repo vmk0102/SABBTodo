@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SQLiteDatabase db=openOrCreateDatabase("todo",MODE_PRIVATE,null);
         String q = "CREATE TABLE IF NOT EXISTS TASKS(TASKID INTERGER PRIMARY KEY AUTOINCREMENT" +
-                ",TASKNAME VARCHAR(100),TASKDESC VARCHAR(100),DUEDATE DATE);";
+                ",TASKNAME VARCHAR(100),TASKDESC VARCHAR(100),DUEDATE DATE,TASKSTATUS VARCHAR(100));";
         db.execSQL(q);
         btnAdd=(Button)findViewById(R.id.btnAddTask);
         btnView=(Button) findViewById(R.id.btnViewTask);
