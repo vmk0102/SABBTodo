@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -38,15 +40,38 @@ public class TaskAdaptor extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView==null){
             convertView = LayoutInflater.from(context).inflate(R.layout.todoadapter,parent,false);
+            RelativeLayout rl = (RelativeLayout)convertView.findViewById(R.id.taskLayout);
             TextView tvTaskName = (TextView)convertView.findViewById(R.id.tvTaskName);
             TextView tvTaskDesc = (TextView)convertView.findViewById(R.id.tvTaskDesc);
             TextView tvTaskStatus = (TextView)convertView.findViewById(R.id.tvTaskStatus);
             TextView tvTaskDueDate = (TextView)convertView.findViewById(R.id.tvDueDate);
+            CheckBox cb = (CheckBox)convertView.findViewById(R.id.cbComplete);
             Tasks task = getItem(position);
             tvTaskName.setText(task.getTaskName());
             tvTaskDesc.setText(task.getTaskDesc());
             tvTaskDueDate.setText(task.getTaskDueDate());
             tvTaskStatus.setText(task.getTaskStatus());
+            if(task.getTaskStatus().equals("INCOMPLETE")){
+                rl.setBackgroundColor(context.getResources().getColor(android.R.color.holo_red_light));
+            }else{
+                rl.setBackgroundColor(context.getResources().getColor(android.R.color.holo_green_light));
+            }
+            if(task.getTaskStatus().equals("INCOMPLETE")){
+                cb.setChecked(false);
+            }else{
+                cb.setChecked(true);
+            }
+            cb.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    viewActivity vw=(viewActivity) context;
+                    if(cb.isChecked()){
+                        vw.updateTasktoComplete(task);
+                    }else{
+                        vw.updateTasktoINComplete(task);
+                    }
+                }
+            });
         }
         return  convertView;
     }

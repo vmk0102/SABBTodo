@@ -34,7 +34,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 String taskName=txtName.getText().toString();
                 String taskDesc=txtDesc.getText().toString();
                 String taskDueDate=txtDueDate.getText().toString();
-                String q = "INSERT INTO TASKS(TASKNAME,TASKDESC,DUEDATE) VALUES " +
+                String q = "INSERT INTO TASKS(TASKNAME,TASKDESC,DUEDATE,TASKSTATUS) VALUES " +
                         "('"+taskName+"','"+taskDesc+"','"+taskDueDate+"','INCOMPLETE');";
                 db.execSQL(q);
                 Toast.makeText(AddTaskActivity.this, "Task Added", Toast.LENGTH_SHORT).show();

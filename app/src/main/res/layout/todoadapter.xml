@@ -61,6 +61,15 @@
         android:layout_below="@id/tvTaskDesc"
         android:textStyle="bold"
         />
-
+<CheckBox
+    android:id="@+id/cbComplete"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:layout_alignParentEnd="true"
+    android:layout_marginRight="10dp"
+    android:backgroundTint="@color/white"
+    android:layout_alignBaseline="@+id/tvDueDate"
+    android:background="@color/white"
+    />
 
 </RelativeLayout>

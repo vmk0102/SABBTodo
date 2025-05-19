@@ -1,6 +1,7 @@
 package com.example.sabbtodo;
 
 public class Tasks {
+    private String  TaskID;
     private String TaskName;
     private String TaskDesc;
     private String TaskDueDate;
@@ -36,5 +37,13 @@ public class Tasks {
 
     public void setTaskDesc(String taskDesc) {
         TaskDesc = taskDesc;
+    }
+
+    public String getTaskID() {
+        return TaskID;
+    }
+
+    public void setTaskID(String taskID) {
+        TaskID = taskID;
     }
 }

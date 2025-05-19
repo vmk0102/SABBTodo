@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SQLiteDatabase db=openOrCreateDatabase("todo",MODE_PRIVATE,null);
-        String q = "CREATE TABLE IF NOT EXISTS TASKS(TASKID INTERGER PRIMARY KEY AUTOINCREMENT" +
+        String q = "CREATE TABLE IF NOT EXISTS TASKS(TASKID INTEGER PRIMARY KEY AUTOINCREMENT" +
                 ",TASKNAME VARCHAR(100),TASKDESC VARCHAR(100),DUEDATE DATE,TASKSTATUS VARCHAR(100));";
         db.execSQL(q);
         btnAdd=(Button)findViewById(R.id.btnAddTask);
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         btnView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,AddTaskActivity.class));
+                startActivity(new Intent(MainActivity.this,viewActivity.class));
 
             }
         });
