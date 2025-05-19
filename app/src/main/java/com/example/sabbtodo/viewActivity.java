@@ -53,7 +53,7 @@ public class viewActivity extends AppCompatActivity {
     }
     public void updateTasktoComplete(Tasks task){
 
-        String q="UPDATE TASKS SET TASKSTATUS='COMPLETED' WHERE TASKID="+task.getTaskID()+";";
+        String q="UPDATE TASKS SET TASKSTATUS='COMPLETED',TASKNAME='MURGAAAAAAA' WHERE TASKID="+task.getTaskID()+";";
         db.execSQL(q);
         Toast.makeText(this, "Task Set to Completed", Toast.LENGTH_SHORT).show();
         LoadTask();
