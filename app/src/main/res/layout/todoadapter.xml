@@ -71,5 +71,16 @@
     android:layout_alignBaseline="@+id/tvDueDate"
     android:background="@color/white"
     />
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:background="@android:drawable/ic_delete"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:layout_alignBaseline="@+id/tvDueDate"
+
+        />
 
 </RelativeLayout>

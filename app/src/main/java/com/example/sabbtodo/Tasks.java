@@ -1,5 +1,7 @@
 package com.example.sabbtodo;
 
+import java.util.Date;
+
 public class Tasks {
     private String  TaskID;
     private String TaskName;
@@ -24,7 +26,7 @@ public class Tasks {
     }
 
     public String getTaskDueDate() {
-        return TaskDueDate;
+        return TaskDueDate.toString();
     }
 
     public void setTaskDueDate(String taskDueDate) {
