@@ -1,5 +1,9 @@
 package com.example.sabbtodo;
 
+import static android.app.NotificationManager.IMPORTANCE_HIGH;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -23,6 +28,9 @@ public class AddTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
         SQLiteDatabase db = openOrCreateDatabase("todo",MODE_PRIVATE,null);
+        NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        NotificationChannel nc = new NotificationChannel("crud_channel","Notifiy Crud Operations",IMPORTANCE_HIGH);
+        nm.createNotificationChannel(nc);
 
         txtName=(EditText)findViewById(R.id.txtTaskName);
         txtDesc=(EditText) findViewById(R.id.txtTaskDesc);
@@ -37,8 +45,16 @@ public class AddTaskActivity extends AppCompatActivity {
                 String q = "INSERT INTO TASKS(TASKNAME,TASKDESC,DUEDATE,TASKSTATUS) VALUES " +
                         "('"+taskName+"','"+taskDesc+"','"+taskDueDate+"','INCOMPLETE');";
                 db.execSQL(q);
-                Toast.makeText(AddTaskActivity.this, "Task Added", Toast.LENGTH_SHORT).show();
-                Toast.makeText(AddTaskActivity.this, "karlena time pe", Toast.LENGTH_SHORT).show();
+                NotificationCompat.Builder nb = new NotificationCompat.Builder(AddTaskActivity.this,"crud_channel");
+                nb.setContentTitle(getResources().getString(R.string.app_name));
+                nb.setContentText("New Task Added: "+taskName);
+                nb.setSmallIcon(R.mipmap.sabbkarlo_round);
+
+                nm.notify(1,nb.build());
+
+
+             /*   Toast.makeText(AddTaskActivity.this, "Task Added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddTaskActivity.this, "karlena time pe", Toast.LENGTH_SHORT).show();*/
             }
         });
     }
