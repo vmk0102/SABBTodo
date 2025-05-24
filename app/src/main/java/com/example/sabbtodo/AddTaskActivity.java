@@ -18,6 +18,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import kotlinx.coroutines.scheduling.Task;
+
 public class AddTaskActivity extends AppCompatActivity {
     EditText txtName;
     EditText txtDesc;
@@ -27,7 +29,6 @@ public class AddTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
-        SQLiteDatabase db = openOrCreateDatabase("todo",MODE_PRIVATE,null);
         NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         NotificationChannel nc = new NotificationChannel("crud_channel","Notifiy Crud Operations",IMPORTANCE_HIGH);
         nm.createNotificationChannel(nc);
@@ -39,17 +40,15 @@ public class AddTaskActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String taskName=txtName.getText().toString();
-                String taskDesc=txtDesc.getText().toString();
-                String taskDueDate=txtDueDate.getText().toString();
-                String q = "INSERT INTO TASKS(TASKNAME,TASKDESC,DUEDATE,TASKSTATUS) VALUES " +
-                        "('"+taskName+"','"+taskDesc+"','"+taskDueDate+"','INCOMPLETE');";
-                db.execSQL(q);
+                Tasks tasks = new Tasks(AddTaskActivity.this);
+                tasks.setTaskName(txtName.getText().toString());
+                tasks.setTaskDesc(txtDesc.getText().toString());
+                tasks.setTaskDueDate(txtDueDate.getText().toString());
+                tasks.AddTask(tasks);
                 NotificationCompat.Builder nb = new NotificationCompat.Builder(AddTaskActivity.this,"crud_channel");
                 nb.setContentTitle(getResources().getString(R.string.app_name));
-                nb.setContentText("New Task Added: "+taskName);
+                nb.setContentText("New Task Added: "+tasks.getTaskName());
                 nb.setSmallIcon(R.mipmap.sabbkarlo_round);
-
                 nm.notify(1,nb.build());
 
 

@@ -11,8 +11,19 @@
         android:id="@+id/etSearchTask"
         android:layout_width="match_parent"
         android:hint="Search for a task jo aapne dala tha"
+        android:layout_marginRight="70dp"
 
         android:layout_height="50dp" />
+    <Button
+        android:id="@+id/btnDeleteAll"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@android:drawable/ic_delete"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:layout_alignBaseline="@+id/etSearchTask"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentEnd="true"
+        />
     <ListView
         android:id="@+id/lvTasks"
         android:layout_below="@id/etSearchTask"

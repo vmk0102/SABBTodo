@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -63,22 +64,22 @@ public class TaskAdaptor extends BaseAdapter {
             }else{
                 cb.setChecked(true);
             }
-            viewActivity vw=(viewActivity) context;
-
             cb.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(cb.isChecked()){
-                        vw.updateTasktoComplete(task);
+                       task.updateTasktoComplete("COMPLETE",(ListView)parent);
+
+
                     }else{
-                        vw.updateTasktoINComplete(task);
+                        task.updateTasktoComplete("INCOMPLETE",(ListView)parent);
                     }
                 }
             });
             btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    vw.deleteTask(task);
+                    task.deleteTask(task,(ListView)parent);
                 }
             });
 
